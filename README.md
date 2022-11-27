@@ -1,3 +1,5 @@
+# Probability and Statistics Assignment
+
 This repository belongs to the assignment of Group 07, Class CC07 of the subject Probability and Statistics.
 
 The repository contains the R file we have made to analyze the data.
