@@ -78,7 +78,7 @@ bartlett.test(LogCombinedMPG ~ EngineType, data = dataset)
 
 ### Prediction model ###
 # Data preparation
-predict_dataset <- dataset[c(12,13,20,24,27)]
+predict_dataset <- dataset[c(12,13,15,20,27)]
 str(predict_dataset)
 
 # Plot correlation graph
@@ -91,11 +91,11 @@ data.train <- predict_dataset[seed==0, ]
 data.test <- predict_dataset[seed==1, ]
 
 # Prediction model 1: Multiple Linear Regression
-model1 <- lm(CombinedMPG ~ Weight + HP + Price, data = data.train)
+model1 <- lm(CombinedMPG ~ Weight + HP + EngineSize, data = data.train)
 summary(model1) 
 
 # Prediction model 2: General Linear Regression
-model2 <- glm(CombinedMPG ~ Weight + HP + Price + EngineType, data=data.train)
+model2 <- glm(CombinedMPG ~ Weight + HP + EngineSize + EngineType, data=data.train)
 summary(model2) 
 
 # One-way ANOVA to choose the appropriate model
