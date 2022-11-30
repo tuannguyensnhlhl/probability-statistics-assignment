@@ -78,7 +78,7 @@ bartlett.test(LogCombinedMPG ~ EngineType, data = dataset)
 
 ### Prediction model ###
 # Data preparation
-predict_dataset <- dataset[c(12,13,20,21,27)]
+predict_dataset <- dataset[c(12,13,20,24,27)]
 str(predict_dataset)
 
 # Plot correlation graph
