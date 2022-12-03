@@ -24,14 +24,24 @@ nrow(dataset)
 dataset <- na.omit(dataset)
 nrow(dataset)
 if(nrow(dataset) == nrow(unique(dataset[c(1:27)]))) {print("There is no duplicated car.")} else {dataset <- dataset[!duplicated(dataset[-c(1:27)]),]}+{print("There exist duplicated cars")}
+cols <- sapply(dataset, is.character)
+dataset[cols] <- lapply(dataset[cols], factor)
+str(dataset)
 
 
 ### Data visualization ###
 # Descriptive statistics for all attributes
-cols <- sapply(dataset, is.character)
-dataset[cols] <- lapply(dataset[cols], factor)
 summary(dataset)
+sd(dataset$NormalizeLosses)
+sd(dataset$WheelBase)
+sd(dataset$Length)
+sd(dataset$Width)
+sd(dataset$Height)
 sd(dataset$Weight)
+sd(dataset$EngineSize)
+sd(dataset$Bore)
+sd(dataset$Stroke)
+sd(dataset$CompressionRatio)
 sd(dataset$HP)
 sd(dataset$PeakRPM)
 sd(dataset$CityMPG)
@@ -45,7 +55,7 @@ dataset <- dataset[-c(25)]
 summary(dataset)
 
 # Create new column
-dataset <- cbind(dataset, CombinedMPG = (0.45*dataset$HighwayMPG+0.55*dataset$CityMPG)) #Create a column of CombinedMPG which is the combination of 55% of City MPG and 45% of Highway MPG
+dataset <- cbind(dataset, CombinedMPG = (0.45*dataset$HighwayMPG+0.55*dataset$CityMPG)) 
 
 # Graph: Fuel Consumption Efficiency By Make
 make_data <- dataset %>%
