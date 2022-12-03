@@ -12,6 +12,8 @@ dataset[1:5,]
 
 ### Name the columns ###
 dataset <- dataset[-c(1,3,10,31)]
+cols <- sapply(dataset, is.character)
+dataset[cols] <- lapply(dataset[cols], factor)
 column_names <- c("No.","NormalizeLosses","Make","Aspiration","Doors","BodyStyles","DriveWheels","WheeBase","Length",
                   "Width","Height","Weight","EngineType","Cylinders","EngineSize","FuelSystem","Bore","Stroke",
                   "CompressionRatio","HP","PeakRPM","CityMPG","HighwayMPG","Price","Lper100kmcity","BinnedHP","Diesel")
@@ -24,9 +26,6 @@ nrow(dataset)
 dataset <- na.omit(dataset)
 nrow(dataset)
 if(nrow(dataset) == nrow(unique(dataset[c(1:27)]))) {print("There is no duplicated car.")} else {dataset <- dataset[!duplicated(dataset[-c(1:27)]),]}+{print("There exist duplicated cars")}
-cols <- sapply(dataset, is.character)
-dataset[cols] <- lapply(dataset[cols], factor)
-str(dataset)
 
 
 ### Data visualization ###
